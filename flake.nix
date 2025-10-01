@@ -43,9 +43,13 @@
             fi
 
             # Create Tempfile
-            temp_file=$(mktemp /tmp/tempfile.XXXXXX)
+            filename="''${FILE##*/}"
+            temp_dir=$(mktemp -d /tmp/mirage-patch.XXXXXX)
+            temp_file="$temp_dir/$filename"
             cp -- "$FILE" "$temp_file"
+            chown "$SUDO_USER" "$temp_dir"
             chown "$SUDO_USER" "$temp_file"
+            chmod 600 "$temp_file"
 
             # Start mirage in background
             ${
