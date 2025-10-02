@@ -64,7 +64,7 @@
             kill "$mirage_pid" 2>/dev/null || true
             wait "$mirage_pid" 2>/dev/null || true
 
-            rm -f "$temp_file"
+            rm -f "$temp_dir"
           '';
 
           default = mirage-patch;
